@@ -17,6 +17,7 @@ test.afterEach(async ({ page }) => {
 
 test('homepage renders all major sections and links', async ({ page }) => {
   await expect(page).toHaveTitle(/FormFit/);
+  await expect(page.locator('link[rel="icon"]')).toHaveAttribute('href', '/favicon.svg');
   await expect(page.locator('.tool-card')).toHaveCount(4);
   await expect(page.locator('.preset')).toHaveCount(5);
   await expect(page.locator('#how')).toBeVisible();
