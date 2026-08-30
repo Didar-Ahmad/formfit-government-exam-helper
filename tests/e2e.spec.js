@@ -7,7 +7,7 @@ test.beforeEach(async ({ page }) => {
   page.on('pageerror', e => errors.push(e.message));
   page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
   await page.goto('/');
-  await expect(page.locator('h1')).toContainText('Resize your exam files');
+  await expect(page.locator('h1')).toContainText('Prepare your application files');
   page.testErrors = errors;
 });
 
@@ -23,8 +23,8 @@ test('homepage renders all major sections and links', async ({ page }) => {
   await expect(page.locator('footer')).toBeVisible();
 });
 
-test('hero starts the photo workflow directly', async ({ page }) => {
-  await page.getByRole('button', { name: 'Resize photo now' }).click();
+test('first tool starts the photo workflow directly', async ({ page }) => {
+  await page.locator('[data-tool="photo"] .card-link').click();
   await expect(page.locator('#toolModal')).toBeVisible();
   await expect(page.locator('#modalKicker')).toHaveText('RESIZE PHOTO');
   await expect(page.locator('#targetSize')).toHaveValue('50');

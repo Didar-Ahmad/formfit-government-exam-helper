@@ -34,7 +34,7 @@ function openTool(type, size = 50, customName = '') {
 }
 
 $$('.tool-card').forEach(card => {
-  $('.card-link', card).addEventListener('click', () => openTool(card.dataset.tool, $('.quick-pills button', card).dataset.size));
+  $('.card-link', card).addEventListener('click', () => openTool(card.dataset.tool, $('.quick-pills button:nth-child(2)', card).dataset.size));
   $$('.quick-pills button', card).forEach(btn => btn.addEventListener('click', e => { e.stopPropagation(); openTool(card.dataset.tool, btn.dataset.size); }));
 });
 $$('.preset').forEach(btn => btn.addEventListener('click', () => openTool(btn.dataset.type, btn.dataset.size, btn.dataset.name)));
