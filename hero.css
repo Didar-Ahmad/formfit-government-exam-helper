@@ -1,6 +1,21 @@
-body { background: #f4f6fa; }
+body {
+  background-color: #f7f9f8;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(23, 59, 58, .055) 1px, transparent 1.2px);
+  background-size: 24px 24px;
+}
 .site-header { height: 72px; background: rgba(255,255,255,.96); }
-.direct-intro { display:flex;align-items:flex-end;justify-content:space-between;gap:32px;padding:30px max(4vw,30px) 18px; }
+.direct-intro {
+  position: relative;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:32px;
+  padding:30px max(4vw,30px) 18px;
+  background:
+    radial-gradient(circle at 88% 5%, rgba(198, 232, 220, .42), transparent 25%),
+    radial-gradient(circle at 68% 100%, rgba(250, 223, 216, .32), transparent 22%);
+}
 .workflow-heading { padding-left:18px;border-left:4px solid var(--coral); }
 .workflow-heading .kicker { color:var(--coral-dark); }
 .workflow-heading h1 { margin:6px 0 3px;font-size:clamp(27px,2.5vw,38px);line-height:1.15;letter-spacing:-.035em; }
@@ -8,13 +23,16 @@ body { background: #f4f6fa; }
 .direct-trust { display:flex;gap:8px;padding-bottom:3px; }
 .direct-trust span { display:flex;align-items:center;gap:6px;padding:8px 11px;border:1px solid #dfe6e3;border-radius:9px;background:#fff;color:#58706d;font-size:11px;font-weight:700; }
 .direct-trust svg { width:15px;color:#34816d; }
-.tools-section { padding:16px max(4vw,30px) 72px;background:transparent; }
+.tools-section {
+  padding:16px max(4vw,30px) 72px;
+  background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(247,249,248,.68));
+}
 .section-heading.compact-heading { align-items:center;margin-bottom:20px; }
 .compact-heading h2 { margin-top:5px;font-size:clamp(26px,2.5vw,36px); }
 .preset-jump { display:inline-flex;align-items:center;gap:7px;color:var(--coral-dark);font-size:13px;font-weight:800;text-decoration:none; }
 .preset-jump svg { width:16px; }
 .tool-grid { gap:16px; }
-.tool-card { min-height:292px;padding:26px;border-color:#cbd8e4;border-radius:16px;background:#fff;box-shadow:none; }
+.tool-card { min-height:292px;padding:26px;border-color:#cbd8e4;border-radius:16px;background:rgba(255,255,255,.96);box-shadow:0 1px 0 rgba(23,59,58,.03); }
 .tool-card.featured { border-color:#efaaa0; }
 .tool-card:hover { border-color:#84a49b;box-shadow:0 12px 28px rgba(26,52,48,.08); }
 .tool-card h3 { font-size:22px; }
