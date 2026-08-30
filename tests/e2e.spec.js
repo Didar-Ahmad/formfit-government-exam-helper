@@ -7,7 +7,7 @@ test.beforeEach(async ({ page }) => {
   page.on('pageerror', e => errors.push(e.message));
   page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
   await page.goto('/');
-  await expect(page.locator('h1')).toContainText('Exam-ready files');
+  await expect(page.locator('h1')).toContainText('Resize your exam files');
   page.testErrors = errors;
 });
 
@@ -21,6 +21,13 @@ test('homepage renders all major sections and links', async ({ page }) => {
   await expect(page.locator('.preset')).toHaveCount(5);
   await expect(page.locator('#how')).toBeVisible();
   await expect(page.locator('footer')).toBeVisible();
+});
+
+test('hero starts the photo workflow directly', async ({ page }) => {
+  await page.getByRole('button', { name: 'Resize photo now' }).click();
+  await expect(page.locator('#toolModal')).toBeVisible();
+  await expect(page.locator('#modalKicker')).toHaveText('RESIZE PHOTO');
+  await expect(page.locator('#targetSize')).toHaveValue('50');
 });
 
 test('exam filters and multilingual guide work', async ({ page }) => {

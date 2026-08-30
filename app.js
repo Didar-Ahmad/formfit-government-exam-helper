@@ -38,6 +38,7 @@ $$('.tool-card').forEach(card => {
   $$('.quick-pills button', card).forEach(btn => btn.addEventListener('click', e => { e.stopPropagation(); openTool(card.dataset.tool, btn.dataset.size); }));
 });
 $$('.preset').forEach(btn => btn.addEventListener('click', () => openTool(btn.dataset.type, btn.dataset.size, btn.dataset.name)));
+$$('.hero-tool').forEach(btn => btn.addEventListener('click', () => openTool(btn.dataset.type, btn.dataset.size)));
 $$('.modal-close').forEach(btn => btn.addEventListener('click', () => btn.closest('dialog').close()));
 $$('dialog').forEach(d => d.addEventListener('click', e => { if (e.target === d) d.close(); }));
 

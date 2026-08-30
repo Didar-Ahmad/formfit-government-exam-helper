@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="hero.css" />
 </head>
 <body>
   <header class="site-header">
@@ -26,16 +27,17 @@
     <section class="hero">
       <div class="hero-copy">
         <div class="eyebrow"><span></span> 100% free · Files stay on your device</div>
-        <h1>Exam-ready files.<br><em>First time, every time.</em></h1>
-        <p>Resize photos, signatures and PDFs to the exact size required by SSC, UPSC, Railways and other government applications.</p>
+        <h1>Resize your exam files.<br><em>Exactly as required.</em></h1>
+        <p>Get the correct file size for photos, signatures and PDFs used in SSC, UPSC, Railways and other government applications.</p>
         <div class="hero-actions">
-          <a class="button primary" href="#tools">Choose a tool <i data-lucide="arrow-down"></i></a>
-          <a class="text-link" href="#presets"><i data-lucide="sparkles"></i> View exam presets</a>
+          <button class="button primary hero-tool" data-type="photo" data-size="50">Resize photo now <i data-lucide="arrow-up-right"></i></button>
+          <a class="text-link" href="#tools"><i data-lucide="layout-grid"></i> See all tools</a>
         </div>
+        <a class="preset-nudge" href="#presets"><i data-lucide="sparkles"></i><span><b>Applying for an exam?</b> Use ready-made SSC, UPSC, Railway and Banking presets.</span><i data-lucide="arrow-right"></i></a>
         <div class="trust-row">
           <span><i data-lucide="shield-check"></i><b>Private</b><small>Browser-based</small></span>
           <span><i data-lucide="zap"></i><b>Instant</b><small>No sign-up</small></span>
-          <span><i data-lucide="badge-check"></i><b>Accurate</b><small>Size guaranteed</small></span>
+          <span><i data-lucide="badge-check"></i><b>Accurate</b><small>Target-size output</small></span>
         </div>
       </div>
       <div class="hero-visual" aria-hidden="true">
