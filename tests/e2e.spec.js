@@ -44,6 +44,7 @@ test('exam filters and multilingual guide work', async ({ page }) => {
 test('photo is resized and downloads as JPEG', async ({ page }) => {
   await page.locator('[data-tool="photo"] [data-size="50"]').click();
   await page.locator('#fileInput').setInputFiles({ name: 'photo.svg', mimeType: 'image/svg+xml', buffer: svg('#df745f', 'PHOTO') });
+  await page.locator('#targetWidth').fill('200'); await page.locator('#targetHeight').fill('230');
   const downloadPromise = page.waitForEvent('download');
   await page.locator('#processButton').click();
   await expect(page.locator('#resultTitle')).toContainText(/ready|possible/i);
@@ -52,6 +53,14 @@ test('photo is resized and downloads as JPEG', async ({ page }) => {
   expect(download.suggestedFilename()).toBe('photo-50kb.jpg');
   const stream = await download.createReadStream(); let size = 0; for await (const chunk of stream) size += chunk.length;
   expect(size).toBeGreaterThan(1000); expect(size).toBeLessThanOrEqual(50 * 1024);
+  await expect(page.locator('#resultMeta')).toContainText('200 × 230 px');
+});
+
+test('home link keeps content below the sticky header', async ({ page }) => {
+  await page.locator('#presets').scrollIntoViewIfNeeded();
+  await page.getByRole('link', { name: 'FormFit home' }).click();
+  const positions = await page.evaluate(() => ({ header: document.querySelector('.site-header').getBoundingClientRect().bottom, intro: document.querySelector('.direct-intro').getBoundingClientRect().top }));
+  expect(positions.intro).toBeGreaterThanOrEqual(positions.header - 1);
 });
 
 test('multiple images convert to a downloadable PDF', async ({ page }) => {

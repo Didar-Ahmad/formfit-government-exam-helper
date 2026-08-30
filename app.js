@@ -12,6 +12,7 @@ const targetInput = $('#targetSize');
 let currentTool = 'photo';
 let currentFile = null;
 let resultUrl = null;
+let previewUrl = null;
 
 const tools = {
   photo: { kicker: 'RESIZE PHOTO', title: 'Make your photo upload-ready', accept: 'image/*', formats: 'JPG, PNG or WEBP', multi: false },
@@ -30,6 +31,9 @@ function openTool(type, size = 50, customName = '') {
   $('.dropzone>i, .dropzone>svg')?.setAttribute('data-lucide', type === 'pdf' ? 'file-up' : 'image-plus');
   targetInput.value = size;
   $('#qualityLabel').style.display = type === 'pdf' ? 'none' : '';
+  $('#advancedSettings').style.display = type === 'pdf' ? 'none' : '';
+  $('#dimensionPanel').style.display = type === 'photo' || type === 'signature' ? '' : 'none';
+  $('#targetWidth').value = ''; $('#targetHeight').value = ''; $('#fitMode').value = 'contain';
   modal.showModal(); lucide.createIcons();
 }
 
@@ -54,6 +58,10 @@ function setFiles(files) {
   const total = files.reduce((n, f) => n + f.size, 0);
   $('#fileName').textContent = files.length > 1 ? `${files.length} images selected` : files[0].name;
   $('#fileMeta').textContent = formatBytes(total);
+  if (previewUrl) URL.revokeObjectURL(previewUrl);
+  const preview = $('#filePreview');
+  if (files.length === 1 && files[0].type.startsWith('image/')) { previewUrl = URL.createObjectURL(files[0]); preview.src = previewUrl; preview.hidden = false; }
+  else { preview.hidden = true; preview.removeAttribute('src'); }
   dropzone.hidden = true; selectedBox.hidden = false;
   processButton.disabled = false; processButton.textContent = currentTool === 'image-pdf' ? 'Create PDF' : currentTool === 'pdf' ? 'Compress PDF' : 'Resize & compress';
   $('#result').hidden = true;
@@ -61,18 +69,25 @@ function setFiles(files) {
 function resetFile() {
   currentFile = null; fileInput.value = ''; dropzone.hidden = false; selectedBox.hidden = true; processButton.disabled = true; processButton.textContent = 'Choose a file first'; $('#result').hidden = true;
   if (resultUrl) URL.revokeObjectURL(resultUrl);
+  if (previewUrl) { URL.revokeObjectURL(previewUrl); previewUrl = null; }
 }
 function formatBytes(n) { return n < 1024 * 1024 ? `${(n / 1024).toFixed(1)} KB` : `${(n / 1024 / 1024).toFixed(2)} MB`; }
 function loadImage(file) { return new Promise((resolve, reject) => { const img = new Image(); img.onload = () => { URL.revokeObjectURL(img.src); resolve(img); }; img.onerror = reject; img.src = URL.createObjectURL(file); }); }
 
 async function compressImage(file, targetKB) {
   const img = await loadImage(file); let scale = 1; let quality = +$('#qualityRange').value / 100; let blob;
+  const requestedW = +$('#targetWidth').value || 0, requestedH = +$('#targetHeight').value || 0;
+  const hasDimensions = requestedW > 0 && requestedH > 0;
   for (let i = 0; i < 12; i++) {
-    const canvas = document.createElement('canvas'); canvas.width = Math.max(1, Math.round(img.width * scale)); canvas.height = Math.max(1, Math.round(img.height * scale));
-    const ctx = canvas.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, canvas.width, canvas.height); ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    const canvas = document.createElement('canvas'); canvas.width = hasDimensions ? requestedW : Math.max(1, Math.round(img.width * scale)); canvas.height = hasDimensions ? requestedH : Math.max(1, Math.round(img.height * scale));
+    const ctx = canvas.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+    if (hasDimensions) {
+      const crop = $('#fitMode').value === 'crop'; const ratio = crop ? Math.max(canvas.width / img.width, canvas.height / img.height) : Math.min(canvas.width / img.width, canvas.height / img.height);
+      const drawW = img.width * ratio, drawH = img.height * ratio; ctx.drawImage(img, (canvas.width-drawW)/2, (canvas.height-drawH)/2, drawW, drawH);
+    } else ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
     blob = await new Promise(r => canvas.toBlob(r, 'image/jpeg', quality));
     if (blob.size <= targetKB * 1024 * .98) break;
-    if (quality > .35) quality -= .1; else scale *= .82;
+    if (quality > .25) quality -= .1; else if (!hasDimensions) scale *= .82; else break;
   }
   return blob;
 }
@@ -128,11 +143,15 @@ processButton.addEventListener('click', async () => {
     else if (currentTool === 'image-pdf') { blob = await imagesToPdf(currentFile, target); name = `documents-${target}kb.pdf`; }
     else { blob = await compressPdf(currentFile, target); name = `compressed-${target}kb.pdf`; }
     resultUrl = URL.createObjectURL(blob); const dl = $('#downloadButton'); dl.href = resultUrl; dl.download = name;
-    $('#downloadButton').style.display = ''; $('#resultTitle').textContent = blob.size > target * 1024 ? 'Compressed as much as possible' : 'Your file is ready'; $('#resultMeta').textContent = `${formatBytes(blob.size)} · ${name}`; $('#result').hidden = false; $('#result').style.display = 'flex';
+    const originalSize = Array.isArray(currentFile) ? currentFile.reduce((sum, file) => sum + file.size, 0) : currentFile.size;
+    const dims = (currentTool === 'photo' || currentTool === 'signature') && +$('#targetWidth').value && +$('#targetHeight').value ? ` · ${$('#targetWidth').value} × ${$('#targetHeight').value} px` : '';
+    $('#downloadButton').style.display = ''; $('#resultTitle').textContent = blob.size > target * 1024 ? 'Compressed as much as possible' : 'Your file is ready'; $('#resultMeta').textContent = `${formatBytes(originalSize)} → ${formatBytes(blob.size)}${dims}`; $('#result').hidden = false; $('#result').style.display = 'flex';
     processButton.textContent = 'Process again';
   } catch (err) { $('#result').hidden = false; $('#result').style.display = 'flex'; $('#resultTitle').textContent = 'Could not compress this file'; $('#resultMeta').textContent = err.message; $('#downloadButton').style.display = 'none'; processButton.textContent = 'Try again'; }
   processButton.disabled = false;
 });
+
+$('#clearDimensions').addEventListener('click', () => { $('#targetWidth').value = ''; $('#targetHeight').value = ''; });
 
 $$('.preset-tabs button').forEach(tab => tab.addEventListener('click', () => { $$('.preset-tabs button').forEach(b => b.classList.remove('active')); tab.classList.add('active'); $$('.preset').forEach(p => p.hidden = tab.dataset.filter !== 'all' && p.dataset.category !== tab.dataset.filter); }));
 

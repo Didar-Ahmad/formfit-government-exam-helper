@@ -4,6 +4,7 @@ body {
     radial-gradient(circle at 1px 1px, rgba(23, 59, 58, .055) 1px, transparent 1.2px);
   background-size: 24px 24px;
 }
+html { scroll-padding-top: 88px; }
 .site-header { height: 72px; background: rgba(255,255,255,.96); }
 .direct-intro {
   position: relative;
@@ -32,12 +33,14 @@ body {
 .preset-jump { display:inline-flex;align-items:center;gap:7px;color:var(--coral-dark);font-size:13px;font-weight:800;text-decoration:none; }
 .preset-jump svg { width:16px; }
 .tool-grid { gap:16px; }
-.tool-card { min-height:292px;padding:26px;border-color:#cbd8e4;border-radius:16px;background:rgba(255,255,255,.96);box-shadow:0 1px 0 rgba(23,59,58,.03); }
+.tool-card { min-height:260px;padding:23px;border-color:#cbd8e4;border-radius:16px;background:rgba(255,255,255,.96);box-shadow:0 1px 0 rgba(23,59,58,.03); }
 .tool-card.featured { border-color:#efaaa0; }
 .tool-card:hover { border-color:#84a49b;box-shadow:0 12px 28px rgba(26,52,48,.08); }
 .tool-card h3 { font-size:22px; }
 .tool-card p { min-height:58px; }
-.tool-card .icon-box { margin-bottom:28px; }
+.tool-card .icon-box { margin-bottom:20px; }
 .card-link { color:var(--coral-dark); }
 @media(max-width:900px){.direct-intro{align-items:flex-start;flex-direction:column;gap:16px}.tool-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:580px){.site-header{height:64px}.direct-intro{padding:24px 18px 13px}.workflow-heading{padding-left:13px}.workflow-heading h1{margin-top:5px;font-size:28px}.workflow-heading p{margin-top:7px;font-size:14px;line-height:1.5}.direct-trust{width:100%;overflow-x:auto}.direct-trust span{white-space:nowrap}.tools-section{padding:14px 18px 52px}.section-heading.compact-heading{display:flex;align-items:flex-end;gap:12px}.compact-heading h2{font-size:25px}.preset-jump{flex:0 0 auto;font-size:0}.preset-jump svg{width:20px}.tool-grid{grid-template-columns:1fr;gap:12px}.tool-card{min-height:0;padding:22px}.tool-card .icon-box{margin-bottom:20px}.tool-card p{min-height:0}}
+@media(max-width:580px){html{scroll-padding-top:76px}.site-header{height:64px}.direct-intro{padding:24px 18px 13px}.workflow-heading{padding-left:13px}.workflow-heading h1{margin-top:5px;font-size:28px}.workflow-heading p{margin-top:7px;font-size:14px;line-height:1.5}.direct-trust{width:100%;overflow-x:auto}.direct-trust span{white-space:nowrap}.tools-section{padding:14px 18px 52px}.section-heading.compact-heading{display:flex;align-items:flex-end;gap:12px}.compact-heading h2{font-size:25px}.preset-jump{flex:0 0 auto;font-size:12px}.preset-jump svg{width:18px}.tool-grid{grid-template-columns:1fr;gap:12px}.tool-card{min-height:0;padding:20px}.tool-card .icon-box{margin-bottom:16px}.tool-card p{min-height:0}}
+
+.file-selected img{width:52px;height:52px;border-radius:8px;object-fit:cover;background:#eef3ef}.dimension-panel{margin:14px 0;padding:13px;border:1px solid var(--line);border-radius:11px;background:#fafbf8}.dimension-heading{display:flex;align-items:center;justify-content:space-between}.dimension-heading b,.dimension-heading small{display:block}.dimension-heading small{margin-top:2px;color:var(--muted);font-size:10px}.dimension-heading button{border:0;background:none;color:var(--coral-dark);font-size:11px;font-weight:700;cursor:pointer}.dimension-inputs{display:grid;grid-template-columns:1fr 14px 1fr;align-items:end;gap:8px;margin-top:11px}.dimension-inputs>svg{width:14px;margin-bottom:11px;color:var(--muted)}.dimension-inputs label{font-size:10px;font-weight:700}.dimension-inputs input,.dimension-inputs select{width:100%;margin-top:5px;padding:8px;border:1px solid var(--line);border-radius:8px;background:#fff}.fit-select{grid-column:1/4;margin-top:3px}.advanced-settings{margin:12px 0 16px;border-bottom:1px solid var(--line);padding-bottom:12px}.advanced-settings summary{display:flex;align-items:center;gap:7px;color:#526b68;font-size:11px;font-weight:700;cursor:pointer}.advanced-settings summary svg{width:14px}.advanced-settings label{display:block;margin-top:12px;font-size:11px;font-weight:700}.advanced-settings input{width:100%;margin-top:8px}dialog{max-height:calc(100vh - 24px);overflow-y:auto}
