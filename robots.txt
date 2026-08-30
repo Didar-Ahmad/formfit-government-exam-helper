@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://formfit-government-exam-helper.vercel.app/sitemap.xml
+Sitemap: https://formfit-tools.vercel.app/sitemap.xml
