@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free photo, signature and PDF resizing tools for Indian government exam applications." />
+  <title>FormFit — Government Exam Upload Helper</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="FormFit home">
+      <span class="brand-mark"><i data-lucide="scan-line"></i></span>
+      <span>Form<span>Fit</span></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#tools">Tools</a><a href="#presets">Exam presets</a><a href="#how">How it works</a>
+    </nav>
+    <button class="lang-button" id="langButton"><i data-lucide="languages"></i><span>English</span><i data-lucide="chevron-down"></i></button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> 100% free · Files stay on your device</div>
+        <h1>Exam-ready files.<br><em>First time, every time.</em></h1>
+        <p>Resize photos, signatures and PDFs to the exact size required by SSC, UPSC, Railways and other government applications.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#tools">Choose a tool <i data-lucide="arrow-down"></i></a>
+          <a class="text-link" href="#presets"><i data-lucide="sparkles"></i> View exam presets</a>
+        </div>
+        <div class="trust-row">
+          <span><i data-lucide="shield-check"></i><b>Private</b><small>Browser-based</small></span>
+          <span><i data-lucide="zap"></i><b>Instant</b><small>No sign-up</small></span>
+          <span><i data-lucide="badge-check"></i><b>Accurate</b><small>Size guaranteed</small></span>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="document-card">
+          <div class="window-dots"><i></i><i></i><i></i></div>
+          <div class="photo-placeholder"><i data-lucide="user-round"></i><span class="crop c1"></span><span class="crop c2"></span><span class="crop c3"></span><span class="crop c4"></span></div>
+          <div class="doc-lines"><b></b><span></span><span></span></div>
+          <div class="size-pill"><i data-lucide="check"></i> 49.8 KB</div>
+        </div>
+        <div class="floating-tag tag-a"><i data-lucide="image"></i><span>PHOTO<small>200 × 230 px</small></span></div>
+        <div class="floating-tag tag-b"><i data-lucide="file-check-2"></i><span>READY<small>Under 50 KB</small></span></div>
+        <div class="stamp"><i data-lucide="check"></i><span>UPLOAD<br>READY</span></div>
+      </div>
+    </section>
+
+    <section class="tools-section" id="tools">
+      <div class="section-heading"><div><span class="kicker">EVERYTHING YOU NEED</span><h2>Pick a tool. Get it done.</h2></div><p>No confusing settings. Just choose your required size and download.</p></div>
+      <div class="tool-grid">
+        <article class="tool-card featured" data-tool="photo"><div class="icon-box coral"><i data-lucide="image"></i></div><span class="popular">MOST USED</span><h3>Resize Photo</h3><p>Compress your passport photo to the exact file size without losing clarity.</p><div class="quick-pills"><button data-size="20">20 KB</button><button data-size="50">50 KB</button><button data-size="100">100 KB</button></div><button class="card-link">Resize photo <i data-lucide="arrow-up-right"></i></button></article>
+        <article class="tool-card" data-tool="signature"><div class="icon-box blue"><i data-lucide="pen-tool"></i></div><h3>Resize Signature</h3><p>Set the right dimensions and file size for your scanned signature.</p><div class="quick-pills"><button data-size="10">10 KB</button><button data-size="20">20 KB</button><button data-size="50">50 KB</button></div><button class="card-link">Resize signature <i data-lucide="arrow-up-right"></i></button></article>
+        <article class="tool-card" data-tool="pdf"><div class="icon-box purple"><i data-lucide="file-text"></i></div><h3>Compress PDF</h3><p>Make certificates and documents smaller while keeping them readable.</p><div class="quick-pills"><button data-size="200">200 KB</button><button data-size="300">300 KB</button><button data-size="500">500 KB</button></div><button class="card-link">Compress PDF <i data-lucide="arrow-up-right"></i></button></article>
+        <article class="tool-card" data-tool="image-pdf"><div class="icon-box green"><i data-lucide="files"></i></div><h3>Image to PDF</h3><p>Combine one or more images into a clean PDF under your chosen limit.</p><div class="quick-pills"><button data-size="200">200 KB</button><button data-size="500">500 KB</button><button data-size="1024">1 MB</button></div><button class="card-link">Convert to PDF <i data-lucide="arrow-up-right"></i></button></article>
+      </div>
+    </section>
+
+    <section class="presets-section" id="presets">
+      <div class="section-heading"><div><span class="kicker">POPULAR EXAMS</span><h2>Ready-made exam presets</h2></div><p>Requirements can change. Always cross-check your official notification.</p></div>
+      <div class="preset-tabs" role="tablist"><button class="active" data-filter="all">All exams</button><button data-filter="staff">SSC</button><button data-filter="upsc">UPSC</button><button data-filter="railway">Railways</button><button data-filter="banking">Banking</button></div>
+      <div class="preset-list">
+        <button class="preset" data-category="staff" data-name="SSC Photo" data-type="photo" data-size="50"><span class="exam-logo ssc">SSC</span><span><b>SSC Photo</b><small>20–50 KB · JPEG</small></span><i data-lucide="chevron-right"></i></button>
+        <button class="preset" data-category="staff" data-name="SSC Signature" data-type="signature" data-size="20"><span class="exam-logo ssc">SSC</span><span><b>SSC Signature</b><small>10–20 KB · JPEG</small></span><i data-lucide="chevron-right"></i></button>
+        <button class="preset" data-category="upsc" data-name="UPSC Signature" data-type="signature" data-size="40"><span class="exam-logo upsc">UPSC</span><span><b>UPSC Signature</b><small>20–40 KB · JPEG</small></span><i data-lucide="chevron-right"></i></button>
+        <button class="preset" data-category="railway" data-name="Railway Photo" data-type="photo" data-size="70"><span class="exam-logo rrb">RRB</span><span><b>Railway Photo</b><small>30–70 KB · JPEG</small></span><i data-lucide="chevron-right"></i></button>
+        <button class="preset" data-category="banking" data-name="IBPS Photo" data-type="photo" data-size="50"><span class="exam-logo ibps">IBPS</span><span><b>IBPS Photo</b><small>20–50 KB · JPEG</small></span><i data-lucide="chevron-right"></i></button>
+      </div>
+    </section>
+
+    <section class="how-section" id="how"><span class="kicker">SIMPLE & SECURE</span><h2>Three steps. That’s it.</h2><div class="steps"><div><b>01</b><i data-lucide="upload-cloud"></i><h3>Upload your file</h3><p>Choose a photo, signature or PDF from your device.</p></div><span class="step-line"></span><div><b>02</b><i data-lucide="sliders-horizontal"></i><h3>Choose a target</h3><p>Pick a size or use a ready-made exam preset.</p></div><span class="step-line"></span><div><b>03</b><i data-lucide="download"></i><h3>Download & apply</h3><p>Save your optimized file and upload it to the form.</p></div></div></section>
+
+    <section class="language-guide"><div><i data-lucide="languages"></i><span><b>Need help in your language?</b><small>Step-by-step instructions are available in English, हिन्दी and বাংলা.</small></span></div><button id="guideButton">Read instructions <i data-lucide="arrow-right"></i></button></section>
+  </main>
+
+  <footer><div class="brand"><span class="brand-mark"><i data-lucide="scan-line"></i></span><span>Form<span>Fit</span></span></div><p>Made to make government applications a little easier.</p><small>Independent utility. Not affiliated with any government department.</small></footer>
+
+  <dialog id="toolModal"><button class="modal-close" aria-label="Close"><i data-lucide="x"></i></button><div class="modal-icon"><i data-lucide="upload-cloud"></i></div><span class="kicker" id="modalKicker">RESIZE PHOTO</span><h2 id="modalTitle">Make your photo upload-ready</h2><p id="modalText">Select a JPG, PNG or WEBP image. Processing happens privately in your browser.</p><label class="dropzone" id="dropzone"><input id="fileInput" type="file" accept="image/*"><i data-lucide="image-plus"></i><b>Drop your file here</b><span>or click to browse</span><small>JPG, PNG or WEBP</small></label><div class="file-selected" id="fileSelected" hidden><i data-lucide="file-check"></i><span><b id="fileName"></b><small id="fileMeta"></small></span><button id="removeFile"><i data-lucide="trash-2"></i></button></div><div class="target-row"><label>Target size <span><input id="targetSize" type="number" min="5" value="50"> KB</span></label><label id="qualityLabel">Output quality <input id="qualityRange" type="range" min="25" max="95" value="85"></label></div><button class="button primary full" id="processButton" disabled>Choose a file first</button><div class="result" id="result" hidden><i data-lucide="circle-check-big"></i><span><b id="resultTitle">Your file is ready</b><small id="resultMeta"></small></span><a id="downloadButton" class="button primary" download>Download</a></div><p class="modal-note"><i data-lucide="shield-check"></i> Your file is processed locally and never uploaded.</p></dialog>
+
+  <dialog id="guideModal"><button class="modal-close" aria-label="Close"><i data-lucide="x"></i></button><div class="guide-tabs"><button class="active" data-lang="en">English</button><button data-lang="hi">हिन्दी</button><button data-lang="bn">বাংলা</button></div><div id="guideContent"></div></dialog>
+
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

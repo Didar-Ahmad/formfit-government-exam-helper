@@ -1,0 +1,12 @@
+{
+  "name": "formfit-upload-helper",
+  "private": true,
+  "scripts": {
+    "test": "node \"./node_modules/@playwright/test/cli.js\" test",
+    "test:report": "node \"./node_modules/@playwright/test/cli.js\" show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "serve": "^14.2.5"
+  }
+}
