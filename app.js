@@ -15,10 +15,10 @@ let resultUrl = null;
 let previewUrl = null;
 
 const tools = {
-  photo: { kicker: 'RESIZE PHOTO', title: 'Make your photo upload-ready', accept: 'image/*', formats: 'JPG, PNG or WEBP', multi: false },
-  signature: { kicker: 'RESIZE SIGNATURE', title: 'Fit your signature perfectly', accept: 'image/*', formats: 'JPG, PNG or WEBP', multi: false },
-  pdf: { kicker: 'COMPRESS PDF', title: 'Shrink your PDF for upload', accept: 'application/pdf', formats: 'PDF document', multi: false },
-  'image-pdf': { kicker: 'IMAGE TO PDF', title: 'Turn images into one PDF', accept: 'image/*', formats: 'JPG, PNG or WEBP · Multiple allowed', multi: true }
+  photo: { kicker: 'RESIZE PHOTO', title: 'Make your photo upload-ready', description: 'Select a JPG, PNG or WEBP image. Processing happens privately in your browser.', accept: 'image/*', formats: 'JPG, PNG or WEBP', multi: false },
+  signature: { kicker: 'RESIZE SIGNATURE', title: 'Fit your signature perfectly', description: 'Select a JPG, PNG or WEBP signature. Processing happens privately in your browser.', accept: 'image/*', formats: 'JPG, PNG or WEBP', multi: false },
+  pdf: { kicker: 'COMPRESS PDF', title: 'Shrink your PDF for upload', description: 'Select a PDF document. Processing happens privately in your browser.', accept: 'application/pdf', formats: 'PDF document', multi: false },
+  'image-pdf': { kicker: 'IMAGE TO PDF', title: 'Turn images into one PDF', description: 'Select one or more JPG, PNG or WEBP images. Processing happens privately in your browser.', accept: 'image/*', formats: 'JPG, PNG or WEBP · Multiple allowed', multi: true }
 };
 
 function openTool(type, size = 50, customName = '') {
@@ -26,6 +26,7 @@ function openTool(type, size = 50, customName = '') {
   const config = tools[type];
   $('#modalKicker').textContent = customName ? customName.toUpperCase() : config.kicker;
   $('#modalTitle').textContent = config.title;
+  $('#modalText').textContent = config.description;
   fileInput.accept = config.accept; fileInput.multiple = config.multi;
   $('.dropzone small').textContent = config.formats;
   $('.dropzone>i, .dropzone>svg')?.setAttribute('data-lucide', type === 'pdf' ? 'file-up' : 'image-plus');
